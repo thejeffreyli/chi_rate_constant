@@ -64,3 +64,29 @@ Updates:
 * For GB: The test score was very low. The model does attempt to identify large chi (shown through TP and FP), but often incorrectly identifies small chi (shown through large FP value).
 
 
+### June 21, 2022 (Day 4)
+* Issue: We have low True Positive rate in our models. 
+* [How to increase true positive in your classification Machine Learning model?](https://stackoverflow.com/questions/58074203/how-to-increase-true-positive-in-your-classification-machine-learning-model)
+    - You can change your model and test whether it performs better or not
+    - You can Fix a different prediction threshold : here I guess you predict 0 if the output of your regression is <0.5, you could change the 0.5 into 0.25 for example. It would increase your True Positive rate, but of course, at the price of some more False Positives.
+    - You can duplicate every positive example in your training set so that your classifier has the feeling that classes are actually balanced.
+    - You could change the loss of the classifier in order to penalize more False Negatives (this is actually pretty close to duplicating your positive examples in the dataset)
+    - sklearn.ensemble.GradientBoostingClassifier
+* [How do I increase the true positive in my classification machine learning model?](https://www.quora.com/How-do-I-increase-the-true-positive-in-my-classification-machine-learning-model)
+    - Maybe your model needs more examples of true positives to learn how to classify them. Then you need to supply more data to your model.
+    - You can apply some preprocessing to your data. E.g. mean normalization, removing outliers, etc.
+    - Sometimes the architecture that you’re using may not be optimal. For instance, instead of coding a neural network from scratch, you can try transfer learning. Finetuning the parameters can also be helpful. Cross-Validation/K-Fold validation will help you to decide, which of the models/set of parameters works best for your task.
+    - Last, but not least, there’re some fancy techniques like progressive resizing or stacking models, that are likely to improve your overall score.
+    - Increasing True Positive is directly linked with the predictive model’s capability in identifying Positive cases correctly.
+        - Data Imbalance: There are very few rows of Positive cases as compared to Negative cases (eg. 10 rows for Positive and 90 rows for Negative)
+        - Solution: Oversample the Positive cases and force the algorithm to learn how to correctly identify positives.
+        - Bad Data: This happens when the predictors which you are using, does not have any correlation with your target variable.
+        - Solution: Try using different predictors Or use some transformations on the existing predictors (e.g. log, sqrt, standardization, etc.)
+* Issue: Let's find a potentially better decision boundary. Bowman's suggestion: Support Vector Machine.
+    - [Support Vector Machine — Simply Explained](https://towardsdatascience.com/support-vector-machine-simply-explained-fee28eba5496)
+    - [Support Vector Machines](https://scikit-learn.org/stable/modules/svm.html)
+        - The advantages of support vector machines are:
+            1. Effective in high dimensional spaces.
+            2. Still effective in cases where number of dimensions is greater than the number of samples.
+            3. Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.
+            4. Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels. 
