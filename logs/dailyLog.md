@@ -5,7 +5,7 @@
 * [A Machine Learning Approach for Rate Constants. II. Clustering, Training, and Predictions for the O(3P) + HCl → OH + Cl Reaction](https://pubs.acs.org/doi/10.1021/acs.jpca.0c04348)
 
 
-## Week 1: Getting Familiar with Data
+## Week 1: Getting Familiar with Data, Initial Models
 
 ### June 13, 2022 (Day 1)
 Updates:
@@ -63,8 +63,9 @@ Updates:
 * For LR, RF, and AB, the confusion matrices display only results for TN and FN. This means that the models only predicts small chi for all data instances. This may be a result of having a large disproportion of small chi to large chi data. 
 * For GB: The test score was very low. The model does attempt to identify large chi (shown through TP and FP), but often incorrectly identifies small chi (shown through large FP value).
 
+## Week 2: Understanding Results and Finding Alternatives
 
-### June 21, 2022 (Day 4)
+### June 21-22, 2022 (Day 4 - 5)
 * Issue: We have low True Positive rate in our models. 
 * [How to increase true positive in your classification Machine Learning model?](https://stackoverflow.com/questions/58074203/how-to-increase-true-positive-in-your-classification-machine-learning-model)
     - You can change your model and test whether it performs better or not
@@ -82,11 +83,25 @@ Updates:
         - Solution: Oversample the Positive cases and force the algorithm to learn how to correctly identify positives.
         - Bad Data: This happens when the predictors which you are using, does not have any correlation with your target variable.
         - Solution: Try using different predictors Or use some transformations on the existing predictors (e.g. log, sqrt, standardization, etc.)
-* Issue: Let's find a potentially better decision boundary. Bowman's suggestion: Support Vector Machine.
+* Issue: Bowman's suggestion: Let's find a potentially better decision boundary. 
     - [Support Vector Machine — Simply Explained](https://towardsdatascience.com/support-vector-machine-simply-explained-fee28eba5496)
     - [Support Vector Machines](https://scikit-learn.org/stable/modules/svm.html)
         - The advantages of support vector machines are:
             1. Effective in high dimensional spaces.
             2. Still effective in cases where number of dimensions is greater than the number of samples.
             3. Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.
-            4. Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels. 
+            4. Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.
+    - [In-Depth: Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
+    - SVM does not support unsupervised learning. Alternatives: SV Clustering?
+* Let's reform our question. I realize we have been addressing the wrong questions for the past couple of days... 
+    - While Dr. Bowman's suggestion to use chi = 3 as a separator for our labels is plausible, we should not build a decision boundary based on a scatter using a feature (ustat) and the target (chi). The target value should not be in the scatter. 
+    - First, we should use an unsupervised learning approach to find proper labels. Or we can keep using chi = 3 and separate the labels into small chi and large chi. 
+    - Second, we should find ways to better feature engineer and feature select our data. Maybe remove some data. This is something to consider since we potentially have an imbalance of labeled data. 
+
+### Week 2 Meeting: 
+
+
+## Week 3: Improving Models and Feature Engineering
+
+* 
+
