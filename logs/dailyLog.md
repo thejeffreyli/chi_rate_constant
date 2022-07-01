@@ -103,5 +103,12 @@ Updates:
 
 ## Week 3: Improving Models and Feature Engineering
 
-* 
+### June 28, 2022 
+* Created new feature for dataset based on the absolute difference between 
 
+
+### June 29, 2022 
+https://www.kaggle.com/code/rafjaa/dealing-with-very-small-datasets/notebook 
+https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.CategoricalNB.html#sklearn.naive_bayes.CategoricalNB 
+https://argoshare.is.ed.ac.uk/healthyr_book/should-i-convert-a-continuous-variable-to-a-categorical-variable.html 
+https://towardsdatascience.com/8-simple-techniques-to-prevent-overfitting-4d443da2ef7d?gi=8501d866cf11
