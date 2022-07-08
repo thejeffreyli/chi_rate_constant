@@ -11,27 +11,26 @@
 Updates:
 * Began looking at the chi dataset. The data.dat file contains 404 data instances. There are five variables, namely ustat, alph1, alph2, beta, and chi.  For the problem we want to solve, ustat, alph1, alph2, and beta are features, while chi is our target.
 * Examined the relationship with each of the features with the target Chi. The goal of this is to see if there are any patterns in the data. Relationships were plotted on a scatter plot with chi on the y-axis and given feature on the x-axis. There does not appear to be an immediate relationship among features and target. 
-* Examined and evaluated the distribution of data across all variables. Since I will be running classification algorithms (and ultimately developing a model), I wanted to bin the continuous data to create usable and easier to understand categorical data. 
+* Examined and evaluated the distribution of data across all variables. The goal of this is to efficiently find ways to bin the continuous data, so these 'bins' can be used as categorical data in later steps (i.e. when data is processed by classification algorithms). 
 * Houston and group created two labels, small chi and large chi, for the target 'chi.' The 'boundary' separating these two clusters was found by eyeing the data; the boundary noted in their [work](https://pubs.acs.org/doi/10.1021/acs.jpca.0c04348) is located at chi = 3. When chi is less than 3, the data instance is labeled as "small chi." When chi is greater than or equal to 3, the data instance is labeled as "large chi." 
 * I wanted to see whether there was an alternate (and possible more systematic) way of finding this decision boundary. Hence, I used [DBSCAN from Scikit Learn](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html). Density-based spatial clustering of applications with noise or DBSCAN is a density-based clustering non-parametric algorithm: given a set of points in some space, it groups together points that are closely packed together (points with many nearby neighbors), marking as outliers points that lie alone in low-density regions (whose nearest neighbors are too far away).
     - Resources:
         1. [DBSCAN Wikipedia](https://en.wikipedia.org/wiki/DBSCAN)
         2. [DBSCAN from Scikit Learn](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html)
 * Setting the epsilon value to 1 (local radius) and the number of samples to six, we achieve a scatterplot that closely resembles having a boundary line at chi = 3. However, it is important to note that while blue represents one cluster, red represents outliers when we are using DBSCAN. 
+* Results and notes can be found on [Week01 - Visualizing Chi Data, Finding Patterns.ipynb](../nb/Week01/Week01%20-%20Models.ipynb). 
 
-
-
-Results and notes can be found on Week01 - Visualizing Chi Data, Finding Patterns. 
 ### June 14, 2022 (Day 2)
 Updates:
-* Obtained Small_chi.dat and Large_chi.dat from Dr. Bowman. These are prelabeled data instances. When displayed on a scatterplot, we see that they are separated by a decision boundary at chi = 3. 
-* Ideally, we want to be able to solve this as a binary classification problem. I figured it would be best to perform some feature engineering with the existing data. Changes made to the data were based on examining the boxplot and the measures of central tendency fom Day 1. I summarized the changes:
+* Obtained Small_chi.dat and Large_chi.dat from Dr. Bowman. There are the datasets created by Houston and group in their [work](https://pubs.acs.org/doi/10.1021/acs.jpca.0c04348). When both datasets are plotted on the same plane, we see the separation at chi = 3. 
+* Ideally, we want to solve this as a binary classification problem. Data preprocessing was performed as we made changes to existing data based on examining the boxplot and the measures of central tendency from [Week01 - Visualizing Chi Data, Finding Patterns](../nb/Week01/Week01%20-%20Models.ipynb). Continuous data was converted to categorical, nominal data:
     - Chi: created binary labels: 0 = small chi (chi < 3), 1 = large chi (chi >= 3)
     - Ustat: created binary labels: 0 = (ustat < 3), 1 = (ustat >= 3)
     - Alph1: created labels: 0 = (alph1 < 1), 1 = ( 1 <= alph1 < 2), 2 = (alph1 >= 2)
     - Alph2: created binary labels: 0 = (alph2 < 2), 1 = (alph2 >= 2)
     - Beta: created binary labels: 0 = (beta < 50), 1 = (beta >= 50)
-* The new dataset can be found in data file. 
+* Results and notes can be found on [Week01 - Preprocessing.ipynb](../nb/Week01/Week01%20-%20Preprocessing.ipynb).
+* The new dataset can be found [here](../data/processed/week01.csv).
 
 ### June 15, 2022 (Day 3)
 Updates:
@@ -63,12 +62,13 @@ Updates:
         - Testing Confusion Matrix: TN = 119, FP = 0, FN = 15, TP = 0
         - AUC: 0.69
 * For LR, RF, and AB, the confusion matrices display only results for TN and FN. This means that the models only predicts small chi for all data instances. This may be a result of having a large disproportion of small chi to large chi data. 
-* For GB: The test score was very low. The model does attempt to identify large chi (shown through TP and FP), but often incorrectly identifies small chi (shown through large FP value).
+* For GB: The test score was very low. The model does attempt to identify large chi (shown through TP and FP), but often incorrectly identifies small chi (shown through large FP value). Issues may occur because the data does not follow a Gaussian distribution. 
+* Results and notes can be found on [Week01 - Models.ipynb](../nb/Week01/Week01%20-%20Models.ipynb).
 
 ## Week 2: Understanding Results and Finding Alternatives
 
-### June 21-22, 2022 (Day 4 - 5)
-* Issue: We have low True Positive rate in our models. 
+### June 21, 2022 (Day 4)
+* Issue: We have low True Positive rate in our models. Our models are not predicting one of the two target classes. 
 * [How to increase true positive in your classification Machine Learning model?](https://stackoverflow.com/questions/58074203/how-to-increase-true-positive-in-your-classification-machine-learning-model)
     - You can change your model and test whether it performs better or not
     - You can Fix a different prediction threshold : here I guess you predict 0 if the output of your regression is <0.5, you could change the 0.5 into 0.25 for example. It would increase your True Positive rate, but of course, at the price of some more False Positives.
@@ -85,35 +85,45 @@ Updates:
         - Solution: Oversample the Positive cases and force the algorithm to learn how to correctly identify positives.
         - Bad Data: This happens when the predictors which you are using, does not have any correlation with your target variable.
         - Solution: Try using different predictors Or use some transformations on the existing predictors (e.g. log, sqrt, standardization, etc.)
-* Issue: Bowman's suggestion: Let's find a potentially better decision boundary. 
-    - [Support Vector Machine — Simply Explained](https://towardsdatascience.com/support-vector-machine-simply-explained-fee28eba5496)
-    - [Support Vector Machines](https://scikit-learn.org/stable/modules/svm.html)
-        - The advantages of support vector machines are:
-            1. Effective in high dimensional spaces.
-            2. Still effective in cases where number of dimensions is greater than the number of samples.
-            3. Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.
-            4. Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.
-    - [In-Depth: Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
-    - SVM does not support unsupervised learning. Alternatives: SV Clustering?
-* Let's reform our question. I realize we have been addressing the wrong questions for the past couple of days... 
-    - While Dr. Bowman's suggestion to use chi = 3 as a separator for our labels is plausible, we should not build a decision boundary based on a scatter using a feature (ustat) and the target (chi). The target value should not be in the scatter. 
-    - First, we should use an unsupervised learning approach to find proper labels. Or we can keep using chi = 3 and separate the labels into small chi and large chi. 
-    - Second, we should find ways to better feature engineer and feature select our data. Maybe remove some data. This is something to consider since we potentially have an imbalance of labeled data. 
 
-### Week 2 Meeting: 
+### June 22, 2022 (Day 5)     
+* How can we uncover further patterns from the data, beyond the target chi? 
+* Explored relationships between features and other features. Wanted to see if any notable clusters can be made from them. Unfortunately, there are no easy way to group data instances in these scatters. 
+* Alternatively, I used the chi labeling (small chi and large chi) used by Houston and group to color code the data instances, and replotted the scatters. Some visual observations I made:
+    - Large chi appears in a wide range of alph1 and beta values, but not alph2 values. Large chi only appears when alph2 is closer to zero.
+    - Following the above observation, large x2-values do not correspond to increased large-chi values.
+* How can we restructure labels for chi? 
+* Wanted to explore if there was another way to group together data instances, beyond DBSCAN. The K-means clustering algorithm computes centroids and repeats until the optimal centroid is found. It is presumptively known how many clusters there are. K-clusters for N instances.
+     - Resources:
+        1. [KMeans Wikipedia](https://en.wikipedia.org/wiki/K-means_clustering)
+        2. [KMeans from Scikit Learn](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
+* Unfortuntately, we were not able to achieve good clusters from the scatter of ustat v chi. Clusters were split near ustat = 5. 
 
+### June 25, 2022 (Day 6)  
+* Presented [PowerPoint](/files/Week%2001%20and%2002%20Report.pdf) for Week 1 and Week 2 results.
+* Discussed ways to move on and potential ways to improve results. 
+    - Adding an additional feature should aid in problems with low TP and FP by providing more data to work with. The new feature suggested is the absolute difference between alph1 and alph2. 
+    - We should see if there is some way to distinguish data instances in the 'overlapping' region in ustat v chi.
+    - Adding noise can prevent overfitting of data.  
 
 ## Week 3: Improving Models and Feature Engineering
 
-### June 28, 2022 
-* Created new feature for dataset based on the absolute difference between 
+### June 28, 2022 (Day 7)  
+* [Should I convert a continuous variable to a categorical variable?](https://argoshare.is.ed.ac.uk/healthyr_book/should-i-convert-a-continuous-variable-to-a-categorical-variable.html)
+    - The clear disadvantage in doing this is that information is being thrown away. Which feels like a bad thing to be doing. This is particularly important if the categories being created are large.
+    - It is unforgivable practice to repeatedly try different cuts of a continuous variable to obtain a statistically significant result. 
+    - When communicating the results of an analysis to a lay audience, it may be easier to use a categorical representation.
+    - TLDR: Do not do it unless you have to. Plot and understand the continuous variable first. If you do it, try not to throw away too much information. Repeat your analyses both with the continuous data and categorical data to ensure there is no difference in the conclusion (often called a sensitivity analysis).
+* Converted the categorical features back into continuous features to preserve important info that may have been lost. The target variable has been left the same, however. 
+* The new dataset can be found [here](../data/processed/week03_nobin.csv).
+* Followed the same procedures as [Week01 - Models.ipynb](../nb/Week01/Week01%20-%20Models.ipynb) in processing and assessing data, except this time we relied only on Logistic Regression as our go-to algorithm. 
+* The results are pretty good with high training accuracy of 0.95 and testing accuracy of 0.92. The area under the curve score is high with a score of 0.95. The confusion matrix shows that the model does attempt to identify both groups, with a good True Negative (small chi) and True Positive (large chi).
+
+### June 29, 2022 (Day 8)  
 
 
-### June 29, 2022 
-https://www.kaggle.com/code/rafjaa/dealing-with-very-small-datasets/notebook 
-https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.CategoricalNB.html#sklearn.naive_bayes.CategoricalNB 
-https://argoshare.is.ed.ac.uk/healthyr_book/should-i-convert-a-continuous-variable-to-a-categorical-variable.html 
-https://towardsdatascience.com/8-simple-techniques-to-prevent-overfitting-4d443da2ef7d?gi=8501d866cf11
+
+
 
 ## Week 4: Improving Models and Feature Engineering
 
