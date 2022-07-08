@@ -100,7 +100,7 @@ Updates:
 * Unfortuntately, we were not able to achieve good clusters from the scatter of ustat v chi. Clusters were split near ustat = 5. 
 
 ### June 25, 2022 (Day 6)  
-* Presented [PowerPoint](../files/Week%2001%20and%2002%20Report.pdf) for Week 1 and Week 2 results.
+* Presented [PowerPoint](../Week%2001%20and%2002%20Report.pdf) for Week 1 and Week 2 results.
 * Discussed ways to move on and potential ways to improve results. 
     - Adding an additional feature should aid in problems with low TP and FP by providing more data to work with. The new feature suggested is the absolute difference between alph1 and alph2. 
     - We should see if there is some way to distinguish data instances in the 'overlapping' region in ustat v chi.
@@ -151,7 +151,7 @@ Updates:
 ## Week 4: Improving Models and Feature Engineering
 
 ### July 5, 2022 (Day 11)  
-* Presented [PowerPoint](../files/Week%2003%20Report.pdf) for Week 3 results.
+* Presented [PowerPoint](../Week%2003%20Report.pdf) for Week 3 results.
 * Discussed results and future direction.
     - Since data is expensive, it is plausible to create artificial data to use for testing. The data just has to be reasonable and 'predictable' (i.e. we are sure of the classification). 
     - Retry processing and assessment but remove alph1 and alph2 as features.
