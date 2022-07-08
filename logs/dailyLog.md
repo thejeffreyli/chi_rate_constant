@@ -151,7 +151,7 @@ Updates:
 ## Week 4: Improving Models and Feature Engineering
 
 ### July 5, 2022 (Day 11)  
-* Presented [PowerPoint](../Week%2003%20Report.pdf) for Week 3 results.
+* Presented [PowerPoint](../logs/files/Week%2003%20Report.pdf) for Week 3 results.
 * Discussed results and future direction.
     - Since data is expensive, it is plausible to create artificial data to use for testing. The data just has to be reasonable and 'predictable' (i.e. we are sure of the classification). 
     - Retry processing and assessment but remove alph1 and alph2 as features.
