@@ -112,3 +112,9 @@ https://www.kaggle.com/code/rafjaa/dealing-with-very-small-datasets/notebook
 https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.CategoricalNB.html#sklearn.naive_bayes.CategoricalNB 
 https://argoshare.is.ed.ac.uk/healthyr_book/should-i-convert-a-continuous-variable-to-a-categorical-variable.html 
 https://towardsdatascience.com/8-simple-techniques-to-prevent-overfitting-4d443da2ef7d?gi=8501d866cf11
+
+
+
+week04
+
+https://python-course.eu/machine-learning/artificial-datasets-with-scikit-learn.php
