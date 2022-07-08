@@ -9,17 +9,19 @@
 
 ### June 13, 2022 (Day 1)
 Updates:
-* Began looking at the chi dataset. The .dat file contains 404 data instances describing parameters and chi. Parameters include ustat, alph1, alph2, and beta. 
-* I wanted to first look at the relationship with each of the parameters with Chi. Relationships were plotted on a scatter plot with chi on the y-axis. 
-    - ustat vs chi: We see most data instances are heavily concentrated on the lower left region. Remaining data intances are scattered across the right, appearing in an upward manner. 
-    - alph1 vs chi: There does not appear to be any noticeable relationship between both variables. Appears evenly distributed. 
-    - alph1 vs chi: More data points are near alph2 = 0. 
-    - beta vs chi: There appears to be a gaussian spread, with more data points clustered around beta = 50. However, it is important to note the clustering of poitns at beta = 10 and beta = 90. 
-* Since we want to develop a classification model for this data, I also wanted to evaluate the spread of data so I can make categorical data. This was done using a box plot.
-* Houston and group tried to develop a classification model using two labels: small chi and large chi. The decision boundary for their work was found by eyeing the data; the decision boundary noted is at chi = 3. When chi is less than 3, the data instance is labeled as "small chi." When chi is greater than or equal to 3, the data instance is labeled as "large chi." 
-* I wanted to see whether there was an alternate (and possible more systematic) way of finding this decision boundary. Hence, I used [DBSCAN from Scikit Learn](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html). Density-based spatial clustering of applications with noise or DBSCAN is a density-based clustering non-parametric algorithm: given a set of points in some space, it groups together points that are closely packed together (points with many nearby neighbors), marking as outliers points that lie alone in low-density regions (whose nearest neighbors are too far away). More info on this algorithm can be found on the Scikit Learn site and [Wikipedia](https://en.wikipedia.org/wiki/DBSCAN).
+* Began looking at the chi dataset. The data.dat file contains 404 data instances. There are five variables, namely ustat, alph1, alph2, beta, and chi.  For the problem we want to solve, ustat, alph1, alph2, and beta are features, while chi is our target.
+* Examined the relationship with each of the features with the target Chi. The goal of this is to see if there are any patterns in the data. Relationships were plotted on a scatter plot with chi on the y-axis and given feature on the x-axis. There does not appear to be an immediate relationship among features and target. 
+* Examined and evaluated the distribution of data across all variables. Since I will be running classification algorithms (and ultimately developing a model), I wanted to bin the continuous data to create usable and easier to understand categorical data. 
+* Houston and group created two labels, small chi and large chi, for the target 'chi.' The 'boundary' separating these two clusters was found by eyeing the data; the boundary noted in their [work](https://pubs.acs.org/doi/10.1021/acs.jpca.0c04348) is located at chi = 3. When chi is less than 3, the data instance is labeled as "small chi." When chi is greater than or equal to 3, the data instance is labeled as "large chi." 
+* I wanted to see whether there was an alternate (and possible more systematic) way of finding this decision boundary. Hence, I used [DBSCAN from Scikit Learn](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html). Density-based spatial clustering of applications with noise or DBSCAN is a density-based clustering non-parametric algorithm: given a set of points in some space, it groups together points that are closely packed together (points with many nearby neighbors), marking as outliers points that lie alone in low-density regions (whose nearest neighbors are too far away).
+    - Resources:
+        1. [DBSCAN Wikipedia](https://en.wikipedia.org/wiki/DBSCAN)
+        2. [DBSCAN from Scikit Learn](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html)
 * Setting the epsilon value to 1 (local radius) and the number of samples to six, we achieve a scatterplot that closely resembles having a boundary line at chi = 3. However, it is important to note that while blue represents one cluster, red represents outliers when we are using DBSCAN. 
 
+
+
+Results and notes can be found on Week01 - Visualizing Chi Data, Finding Patterns. 
 ### June 14, 2022 (Day 2)
 Updates:
 * Obtained Small_chi.dat and Large_chi.dat from Dr. Bowman. These are prelabeled data instances. When displayed on a scatterplot, we see that they are separated by a decision boundary at chi = 3. 
@@ -113,7 +115,7 @@ https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.Categorica
 https://argoshare.is.ed.ac.uk/healthyr_book/should-i-convert-a-continuous-variable-to-a-categorical-variable.html 
 https://towardsdatascience.com/8-simple-techniques-to-prevent-overfitting-4d443da2ef7d?gi=8501d866cf11
 
-
+## Week 4: Improving Models and Feature Engineering
 
 week04
 
