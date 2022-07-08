@@ -108,25 +108,56 @@ Updates:
 
 ## Week 3: Improving Models and Feature Engineering
 
+* Results and notes for the week can be found on [Week03 - Model Assessments](../nb/Week03/Week03%20-%20Model%20Assessments.ipynb) and [Week03 - Visualization and Feature Engineering](../nb/Week03/Week03%20-%20Visualization%20and%20Feature%20Engineering.ipynb).
+
 ### June 28, 2022 (Day 7)  
 * [Should I convert a continuous variable to a categorical variable?](https://argoshare.is.ed.ac.uk/healthyr_book/should-i-convert-a-continuous-variable-to-a-categorical-variable.html)
     - The clear disadvantage in doing this is that information is being thrown away. Which feels like a bad thing to be doing. This is particularly important if the categories being created are large.
     - It is unforgivable practice to repeatedly try different cuts of a continuous variable to obtain a statistically significant result. 
     - When communicating the results of an analysis to a lay audience, it may be easier to use a categorical representation.
     - TLDR: Do not do it unless you have to. Plot and understand the continuous variable first. If you do it, try not to throw away too much information. Repeat your analyses both with the continuous data and categorical data to ensure there is no difference in the conclusion (often called a sensitivity analysis).
-* Converted the categorical features back into continuous features to preserve important info that may have been lost. The target variable has been left the same, however. 
+* Converted the categorical features back into continuous features to preserve important info that may have been lost. Features remain continuous from now on, unless otherwise stated. The target variable has been left the same, however. 
 * The new dataset can be found [here](../data/processed/week03_nobin.csv).
 * Followed the same procedures as [Week01 - Models.ipynb](../nb/Week01/Week01%20-%20Models.ipynb) in processing and assessing data, except this time we relied only on Logistic Regression as our go-to algorithm. 
 * The results are pretty good with high training accuracy of 0.95 and testing accuracy of 0.92. The area under the curve score is high with a score of 0.95. The confusion matrix shows that the model does attempt to identify both groups, with a good True Negative (small chi) and True Positive (large chi).
 
 ### June 29, 2022 (Day 8)  
+* Adding a new feature may potentially help in improving model accuracy by providing more useful information and speeding up data transformation.
+* Created a new dataset with 'diff' as a new feature. Diff is the absolute difference between alph1 and alph2. Diff remains a feature unless stated otherwise. Thus, there is now a total of five features. 
+* The new dataset can be found [here](../data/processed/week03_nobin_diff.csv).
+* Followed the same procedures as before and used Logistic Regression. There were good scores for True Negative and True Positive as the models attempts to predict small and large chi with some errors. 
+* Removed alph1 and alph2 from dataset, because they may be redundant data. Thus, there is only three features. Performed the same procedures and model assessment. The model perfectly predicts small chi and large chi with no errors. The AUC curve is perfect. 
+* High AUC and perfect AUC may be the result of overfitting, stemming from a small dataset. Will need to see if it is possible to generate reasonable artificial data and/or noise to dataset in later steps.  
 
+### June 30, 2022 (Day 9)  
+* Bowman suggested: 
+    - In addition to try SVM using u* and alphdif =alpha1-alpha2 I had a thought about RF. Suppose you use u* and alphdif as inputs again.  Then train on all data in the large chi cluster and a random split (maybe 50:50) of the small chi cluster.  Then test on the data left out of the small chi cluster.  What we want to see if that test data gets assigned to the small cluster with no errors.  I would expect some errors, i.e., assigned to the large chi cluster.  But if this works this could be another option for assigning clusters to new data.
+* Goal: See if test data gets assigned to small chi with no errors. 
+* Divided data as follows: 
+    - Training data consists of 183 random instances of small chi, all (38) instances of large chi.
+    - Testing data consists of the remaining 183 random instances of small chi.
+    - Kept all features. 
+* The new dataset can be found [here](../data/processed/week03_train_df_sugg01.csv) and [here](../data/processed/week03_test_df_sugg01.csv).
+* Confusion matrix shows 174 instances were correctly identified as small chi (True Negative) and 9 were incorrectly identified as 'large chi (False Positive). As expected, the model does not predict perfectly. 
 
-
-
+### July 1, 2022 (Day 10)  
+* Bowman suggested: 
+    - Given the ustat v chi scatter, can you cut from the small and large chi datasets just the data with u* between 5 and 12?  Then we can eyeball the these datasets and see if we spot anything that might distinguish the two.
+* Goal: Process only data instances that lie between 5.26 and 12.6. The minimum ustat value for large chi is 5.26 and the maximum ustat value for small chi is 12.6. 
+* There are a total of 128 data instances: 98 small chi and 30 large chi.
+* The new dataset can be found [here](../data/processed/week03_overlap_data.csv).
+* Same process and model assessment as before. There is good testing accuracy and AUC curve. Model predicts small and large chi with errors. Issues may stem from not having enough testing data for large chi.
 
 ## Week 4: Improving Models and Feature Engineering
 
-week04
+### July 5, 2022 (Day 11)  
+* Presented [PowerPoint](/files/Week%2003%20Report.pdf) for Week 3 results.
+* Discussed results and future direction.
+    - Since data is expensive, it is plausible to create artificial data to use for testing. The data just has to be reasonable and 'predictable' (i.e. we are sure of the classification). 
+    - Retry processing and assessment but remove alph1 and alph2 as features.
+    - Examining the 'overlap' data further, we want to be able to classify this region. Does not have to be small chi or large chi. 
+
+
+
 
 https://python-course.eu/machine-learning/artificial-datasets-with-scikit-learn.php
