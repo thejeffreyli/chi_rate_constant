@@ -100,7 +100,7 @@ Updates:
 * Unfortuntately, we were not able to achieve good clusters from the scatter of ustat v chi. Clusters were split near ustat = 5. 
 
 ### June 25, 2022 (Day 6)  
-* Presented [PowerPoint](../Week%2001%20and%2002%20Report.pdf) for Week 1 and Week 2 results.
+* Presented [PowerPoint](../logs/files/Week%2001%20and%2002%20Report.pdf) for Week 1 and Week 2 results.
 * Discussed ways to move on and potential ways to improve results. 
     - Adding an additional feature should aid in problems with low TP and FP by providing more data to work with. The new feature suggested is the absolute difference between alph1 and alph2. 
     - We should see if there is some way to distinguish data instances in the 'overlapping' region in ustat v chi.
@@ -157,7 +157,7 @@ Updates:
     - Retry processing and assessment but remove alph1 and alph2 as features.
     - Examining the 'overlap' data further, we want to be able to classify this region. Does not have to be small chi or large chi. 
 
-### July 5, 2022 (Day 11)  
+### July 6, 2022 (Day 12)  
 
 
 https://python-course.eu/machine-learning/artificial-datasets-with-scikit-learn.php
