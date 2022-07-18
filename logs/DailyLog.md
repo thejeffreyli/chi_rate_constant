@@ -30,7 +30,7 @@ Updates:
     - Alph2: created binary labels: 0 = (alph2 < 2), 1 = (alph2 >= 2)
     - Beta: created binary labels: 0 = (beta < 50), 1 = (beta >= 50)
 * Results and notes can be found on [Week01 - Preprocessing.ipynb](../nb/Week01/Week01%20-%20Preprocessing.ipynb).
-* The new dataset can be found [here](../data/processed/week01.csv).
+* The new dataset can be found [here](../data/preprocessed/week01.csv).
 
 ### June 15, 2022 (Day 3)
 Updates:
@@ -117,14 +117,14 @@ Updates:
     - When communicating the results of an analysis to a lay audience, it may be easier to use a categorical representation.
     - TLDR: Do not do it unless you have to. Plot and understand the continuous variable first. If you do it, try not to throw away too much information. Repeat your analyses both with the continuous data and categorical data to ensure there is no difference in the conclusion (often called a sensitivity analysis).
 * Converted the categorical features back into continuous features to preserve important info that may have been lost. Features remain continuous from now on, unless otherwise stated. The target variable has been left the same, however. 
-* The new dataset can be found [here](../data/processed/week03_nobin.csv).
+* The new dataset can be found [here](../data/preprocessed/week03_nobin.csv).
 * Followed the same procedures as [Week01 - Models.ipynb](../nb/Week01/Week01%20-%20Models.ipynb) in processing and assessing data, except this time we relied only on Logistic Regression as our go-to algorithm. 
 * The results are pretty good with high training accuracy of 0.95 and testing accuracy of 0.92. The area under the curve score is high with a score of 0.95. The confusion matrix shows that the model does attempt to identify both groups, with a good True Negative (small chi) and True Positive (large chi).
 
 ### June 29, 2022 (Day 8)  
 * Adding a new feature may potentially help in improving model accuracy by providing more useful information and speeding up data transformation.
 * Created a new dataset with 'diff' as a new feature. Diff is the absolute difference between alph1 and alph2. Diff remains a feature unless stated otherwise. Thus, there is now a total of five features. 
-* The new dataset can be found [here](../data/processed/week03_nobin_diff.csv).
+* The new dataset can be found [here](../data/preprocessed/week03_nobin_diff.csv).
 * Followed the same procedures as before and used Logistic Regression. There were good scores for True Negative and True Positive as the models attempts to predict small and large chi with some errors. 
 * Removed alph1 and alph2 from dataset, because they may be redundant data. Thus, there is only three features. Performed the same procedures and model assessment. The model perfectly predicts small chi and large chi with no errors. The AUC curve is perfect. 
 * High AUC and perfect AUC may be the result of overfitting, stemming from a small dataset. Will need to see if it is possible to generate reasonable artificial data and/or noise to dataset in later steps.  
@@ -137,7 +137,7 @@ Updates:
     - Training data consists of 183 random instances of small chi, all (38) instances of large chi.
     - Testing data consists of the remaining 183 random instances of small chi.
     - Kept all features. 
-* The new dataset can be found [here](../data/processed/week03_train_df_sugg01.csv) and [here](../data/processed/week03_test_df_sugg01.csv).
+* The new datasets can be found [here](../data/preprocessed/week04_large_chi_art_data.csv) and [here](../data/preprocessed/week04_overlap_data.csv).
 * Confusion matrix shows 174 instances were correctly identified as small chi (True Negative) and 9 were incorrectly identified as 'large chi (False Positive). As expected, the model does not predict perfectly. 
 
 ### July 1, 2022 (Day 10)  
@@ -145,15 +145,16 @@ Updates:
     - Given the ustat v chi scatter, can you cut from the small and large chi datasets just the data with u* between 5 and 12?  Then we can eyeball the these datasets and see if we spot anything that might distinguish the two.
 * Goal: Process only data instances that lie between 5.26 and 12.6. The minimum ustat value for large chi is 5.26 and the maximum ustat value for small chi is 12.6. 
 * There are a total of 128 data instances: 98 small chi and 30 large chi.
-* The new dataset can be found [here](../data/processed/week03_overlap_data.csv).
+* The new dataset can be found [here](../data/preprocessed/week03_overlap_data.csv).
 * Same process and model assessment as before. There is good testing accuracy and AUC curve. Model predicts small and large chi with errors. Issues may stem from not having enough testing data for large chi.
 
 ## Week 4: Improving Models and Feature Engineering
 
-* Results and notes for the week can be found on [Week03 - Model Assessments](../nb/Week03/Week03%20-%20Model%20Assessments.ipynb) and [Week03 - Visualization and Feature Engineering](../nb/Week03/Week03%20-%20Visualization%20and%20Feature%20Engineering.ipynb).
+* Results and notes for the week can be found on [Week04 - Restructuring Features.ipynb](../nb/Week04/Week04%20-%20Restructuring%20Features.ipynb) and [Week04 - Generating Artificial Data, Improving Models.ipynb](../nb/Week04/Week04%20-%20Generating%20Artificial%20Data%2C%20Improving%20Models.ipynb).
+* The new datasets can be found [here](../data/preprocessed/week03_train_df_sugg01.csv) and [here](../data/preprocessed/week03_test_df_sugg01.csv).
 
 ### July 5, 2022 (Day 11)  
-* Presented [PowerPoint](../logs/files/Week%2003%20Report.pdf) for Week 3 results.
+* Presented [PowerPoint](../logs/files/Week%2004%20Report.pdf) for Week 4 results.
 * Discussed results and future direction.
     - Since data is expensive, it is plausible to create artificial data to use for testing. The data just has to be reasonable and 'predictable' (i.e. we are sure of the classification). 
     - Retry processing and assessment but remove alph1 and alph2 as features.
@@ -164,7 +165,6 @@ Updates:
 * There was not a lot of data to work with, since we reduced the already small dataset.
 * After observing the heatmap, we see high correlation between the variables alph2 and diff. This was confirmed through the scatter plot of the two features. However, this does not give a lot of useful information because alph2 is part of diff ( = abs difference between alph1 and alph2).
 * None of the other scatters displayed meaningful information, even with the addition of the chi labels.
-
 
 ### July 8, 2022 (Day 14)  
 * Explored the [Random Module](https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html) of numpy. numpy.random.normal draws random samples from a normal distribution. 
@@ -195,7 +195,7 @@ Updates:
 * We both agreed three dimensional clustering (two features and one target) would be a good place to start. 
 
 ### July 12 and 13, 2022 (Day 17-18)  
-* Presented [PowerPoint](../logs/files/Week%2003%20Report.pdf) for Week 4 results.
+* Presented [PowerPoint](../logs/files/Week%2004%20Report.pdf) for Week 4 results.
 * Dr. Bowman noticed something interesting about the original dataset. Hosted another meeting with the rest of the group to talk about it. 
 
 
