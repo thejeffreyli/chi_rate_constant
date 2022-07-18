@@ -194,9 +194,9 @@ Updates:
 * Talked about previous experiences and results with unsupervised learning methods on the dataset. 
 * We both agreed three dimensional clustering (two features and one target) would be a good place to start. 
 
-### July 12 and 13, 2022 (Day 16-17)  
+### July 12 and 13, 2022 (Day 17-18)  
 * Presented [PowerPoint](../logs/files/Week%2003%20Report.pdf) for Week 4 results.
 * Dr. Bowman noticed something interesting about the original dataset. Hosted another meeting with the rest of the group to talk about it. 
 
 
-### July 18, 2022 (Day 12)  
+### July 18, 2022 (Day 19)  
