@@ -175,7 +175,7 @@ Updates:
     2. Use as training data to regularize the model. 
 
 
-### July 9, 2022 (Day 12)  
+### July 9, 2022 (Day 15)  
 * Experiment 1: Used artificial data as extra testing data. Tested on LR model from last week with perfect testing and AUC score.
     - Testing data consisted of 114 entries: 38 noisy large chi and  76 randomly selected noisy small chi
     - Achieved perfect AUC score.
@@ -186,14 +186,17 @@ Updates:
     Thoughts: Similar to the first experiment, I wanted to eliminate the possibility of overfitting. But, I no longer think overfitting is a problem. Bad labels will create problems for any classification problem. 
 
 
-## Week 5: Changes
+## Week 5 - 6: Changes
+
+### July 11, 2022 (Day 16)  
+* Presented to and discussed results with Chen.
+* Chen agreed the labelling of the original dataset with 'small chi' and 'large chi' is problematic. Suggested unsupervised learning as a way to discover new labels.
+* Talked about previous experiences and results with unsupervised learning methods on the dataset. 
+* We both agreed three dimensional clustering (two features and one target) would be a good place to start. 
+
+### July 12 and 13, 2022 (Day 16-17)  
+* Presented [PowerPoint](../logs/files/Week%2003%20Report.pdf) for Week 4 results.
+* Dr. Bowman noticed something interesting about the original dataset. Hosted another meeting with the rest of the group to talk about it. 
 
 
-
-
-
-### July 11, 2022 (Day 12)  
-
-### July 12, 2022 (Day 12)  
-
-### July 13, 2022 (Day 12)  
+### July 18, 2022 (Day 12)  
