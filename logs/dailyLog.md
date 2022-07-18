@@ -150,6 +150,8 @@ Updates:
 
 ## Week 4: Improving Models and Feature Engineering
 
+* Results and notes for the week can be found on [Week03 - Model Assessments](../nb/Week03/Week03%20-%20Model%20Assessments.ipynb) and [Week03 - Visualization and Feature Engineering](../nb/Week03/Week03%20-%20Visualization%20and%20Feature%20Engineering.ipynb).
+
 ### July 5, 2022 (Day 11)  
 * Presented [PowerPoint](../logs/files/Week%2003%20Report.pdf) for Week 3 results.
 * Discussed results and future direction.
@@ -157,7 +159,41 @@ Updates:
     - Retry processing and assessment but remove alph1 and alph2 as features.
     - Examining the 'overlap' data further, we want to be able to classify this region. Does not have to be small chi or large chi. 
 
-### July 6, 2022 (Day 12)  
+### July 7, 2022 (Day 13)  
+* Explored the overlap data for patterns and relationships among the features (and target).
+* There was not a lot of data to work with, since we reduced the already small dataset.
+* After observing the heatmap, we see high correlation between the variables alph2 and diff. This was confirmed through the scatter plot of the two features. However, this does not give a lot of useful information because alph2 is part of diff ( = abs difference between alph1 and alph2).
+* None of the other scatters displayed meaningful information, even with the addition of the chi labels.
 
 
-https://python-course.eu/machine-learning/artificial-datasets-with-scikit-learn.php
+### July 8, 2022 (Day 14)  
+* Explored the [Random Module](https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html) of numpy. numpy.random.normal draws random samples from a normal distribution. 
+* Decided the best way to create artificial data would be to add noise to the existing data. Noise was created using the numpy.random.normal function and with the same dimension as the original dataset. 
+* Plotting the artificial data, we see that the new data resembles the existing dataset. 
+* I wanted to use the artificial data for two purposes: 
+    1. Use as testing data to see how models performs on more unseen data.
+    2. Use as training data to regularize the model. 
+
+
+### July 9, 2022 (Day 12)  
+* Experiment 1: Used artificial data as extra testing data. Tested on LR model from last week with perfect testing and AUC score.
+    - Testing data consisted of 114 entries: 38 noisy large chi and  76 randomly selected noisy small chi
+    - Achieved perfect AUC score.
+    - Thoughts: I was hoping the additional testing data results would prove the model was overfitting. However, it was not able to do so. An imbalance of labeled data and the small size of the data are still problems we need to address. 
+* Experiment 2: Used artificial data in the training process. Trained and tested new LR model.  
+    - Training data consisted of 290 entries. Training data had 270 entries after train_test_split (67:33 ratio). 10 random noisy large chi and 10 random noisy small chi were added afterwards.
+    - Achieved perfect testing and AUC score.
+    Thoughts: Similar to the first experiment, I wanted to eliminate the possibility of overfitting. But, I no longer think overfitting is a problem. Bad labels will create problems for any classification problem. 
+
+
+## Week 5: Changes
+
+
+
+
+
+### July 11, 2022 (Day 12)  
+
+### July 12, 2022 (Day 12)  
+
+### July 13, 2022 (Day 12)  
