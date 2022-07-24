@@ -212,10 +212,20 @@ Updates:
 ### July 21, 2022 (Day 21)
 * Transformed the data.
 * Looked into preprocessing techniques. Decided to pursue [PowerTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html) from Sci-kit Learn. 
-    - Apply a power transform featurewise to make data more Gaussian-like.
-    - Currently, PowerTransformer supports the Box-Cox transform and the Yeo-Johnson transform. The optimal parameter for stabilizing variance and minimizing skewness is estimated through maximum likelihood. Box-Cox requires input data to be strictly positive, while Yeo-Johnson supports both positive or negative data.
-    - By default, zero-mean, unit-variance normalization is applied to the transformed data.
 
+#### Notes:
+* What is power transform?
+    - Power transforms refer to a class of techniques that use a power function (like a logarithm or exponent) to make the probability distribution of a variable Gaussian or more-Gaussian like. This is often described as removing a skew in the distribution, although more generally is described as  stabilizing the variance of the distribution.
+    - The idea is to apply a transformation to each feature of our dataset. 
+*  Why use power transform?
+    - The idea is to increase the symmetry of the distribution of the features. If a features is asymmetric, applying a power transformation will make it more symmetric. 
+    - Some models may not work properly if the features are not symmetric. For example, models based on distances like KNN or K-means may fail if the distributions are skewed. In order to make these models work, power transformations will symmetrize the features without affecting their predictive power too much.
+    - The transformed training dataset can then be fed to a machine learning model to learn a predictive modeling task.
+* Box-Cox Transform
+    - It is a power transform that assumes the values of the input variable to which it is applied are strictly positive. That means 0 and negative values are not supported.
+* Yeo-Johnson Transform
+    - Unlike the Box-Cox transform, it does not require the values for each input variable to be strictly positive. It supports zero values and negative values. This means we can apply it to our dataset without scaling it first.
+    - According to my experience, it’s worth using power transformations when we use models based on distances like KNN, K-means, DBSCAN. 
 * Resources:
     - [sklearn.preprocessing.PowerTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html)
     - [When and how to use power transform in machine learning](https://www.yourdatateacher.com/2021/04/21/when-and-how-to-use-power-transform-in-machine-learning/)
