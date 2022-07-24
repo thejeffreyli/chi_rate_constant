@@ -190,13 +190,36 @@ Updates:
 
 ### July 11, 2022 (Day 16)  
 * Presented to and discussed results with Chen.
-* Chen agreed the labelling of the original dataset with 'small chi' and 'large chi' is problematic. Suggested unsupervised learning as a way to discover new labels.
+* Chen agreed the labeling of the original dataset with 'small chi' and 'large chi' is potentially problematic, since there is an uneven distribution between the two labels. Suggested unsupervised learning as a way to discover new labels.
 * Talked about previous experiences and results with unsupervised learning methods on the dataset. 
-* We both agreed three dimensional clustering (two features and one target) would be a good place to start. 
+* We both agreed three dimensional clustering would be a good place to start to find new labels.  
 
 ### July 12 and 13, 2022 (Day 17-18)  
 * Presented [PowerPoint](../logs/files/Week%2004%20Report.pdf) for Week 4 results.
-* Dr. Bowman noticed something interesting about the original dataset. Hosted another meeting with the rest of the group to talk about it. 
+* Dr. Bowman noticed something unusual about the original dataset. Hosted another meeting with the rest of the group to talk about it. 
 
+### July 19, 2022 (Day 19)  
+* Meeting with Dr. Bowman and Dr. Houston. 
+* Presented with updated dataset, which has been purged of duplicate entries (i.e., there are no 1D reactions, only 3D). 
+* There is another dataset, containing ONLY the duplicate entries, in which there are both 1D and 3D entries.
+* The new purpose for using these datasets is to  take the 1D reactions, figure out how to perform Gaussian Process Regressin on them, so we can predict/modify and achieve 3D results. 
+* Current goal is to analyze the purged dataset, which has already been prelabeled 'small chi' and 'large chi.'
+* The purged dataset can be found [here](xxx) along with its [small chi](xxx) and [large chi](xxx) components. The duplicates dataset can be found [here](xxx).
 
-### July 18, 2022 (Day 19)  
+### July 20, 2022 (Day 20)
+* Performed data exploration on updated dataset. 
+
+### July 21, 2022 (Day 21)
+* Transformed the data.
+* Looked into preprocessing techniques. Decided to pursue [PowerTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html) from Sci-kit Learn. 
+    - Apply a power transform featurewise to make data more Gaussian-like.
+    - Currently, PowerTransformer supports the Box-Cox transform and the Yeo-Johnson transform. The optimal parameter for stabilizing variance and minimizing skewness is estimated through maximum likelihood. Box-Cox requires input data to be strictly positive, while Yeo-Johnson supports both positive or negative data.
+    - By default, zero-mean, unit-variance normalization is applied to the transformed data.
+
+* Resources:
+    - [sklearn.preprocessing.PowerTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html)
+    - [When and how to use power transform in machine learning](https://www.yourdatateacher.com/2021/04/21/when-and-how-to-use-power-transform-in-machine-learning/)
+    - [How to Use Power Transforms for Machine Learning](https://machinelearningmastery.com/power-transforms-with-scikit-learn/)
+
+### July 23, 2022 (Day 22)
+* Visualization
