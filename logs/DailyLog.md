@@ -311,3 +311,4 @@ Updates:
     - For a concrete difference, consider that the only thing you get from k-means is a partition. The output from fitting a GMM can include much more than that. For example, you can compute the probability a given point came from each of the different fitted components.
     
 
+### July 30, 2022 (Day 28)
