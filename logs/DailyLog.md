@@ -190,7 +190,7 @@ Updates:
 
 ### July 11, 2022 (Day 16)  
 * Presented to and discussed results with Chen.
-* Chen agreed the labeling of the original dataset with 'small chi' and 'large chi' is potentially problematic, since there is an uneven distribution between the two labels. Suggested unsupervised learning as a way to discover new labels.
+* Chen agreed the labeling of the original dataset with 'small chi' and 'large chi' may cause some issues, since there is an uneven distribution between the two labels. Suggested unsupervised learning as a way to discover new labels.
 * Talked about previous experiences and results with unsupervised learning methods on the dataset. 
 * We both agreed three dimensional clustering would be a good place to start to find new labels.  
 
@@ -261,6 +261,9 @@ Updates:
 
 ## Week 7: Cluster Analysis
 
+* Results and notes for the week can be found on [Week07 - Cluster Analysis](../nb/Week07/Week07%20-%20Cluster%20Analysis.ipynb) and [Week07 - Feature Engineering and Clustering](../nb/Week07/Week07%20-%20Feature%20Engineering%20and%20Clustering.ipynb).
+* The new datasets can be found [here](../data/preprocessed/week03_train_df_sugg01.csv) and [here](../data/preprocessed/week03_test_df_sugg01.csv).
+
 ### July 24, 2022 (Day 23)
 * Presented [PowerPoint](../logs/files/Week%2006%20Report.pdf) for Week 6 results.
 
@@ -312,4 +315,3 @@ Updates:
     - [In Depth: Gaussian Mixture Models](https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html)
     - [In cluster analysis, how does Gaussian mixture model differ from K Means when we know the clusters are spherical?](https://stats.stackexchange.com/questions/489459/in-cluster-analysis-how-does-gaussian-mixture-model-differ-from-k-means-when-we#:~:text=only%20real%20difference%20between%20the,while%20GMM%20makes%20soft%20partitions.)
 
-### July 30, 2022 (Day 28)
