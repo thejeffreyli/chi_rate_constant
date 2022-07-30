@@ -276,28 +276,38 @@ Updates:
 * Same as before, no clear labels can be generated from the clusters. 
 * The results from the past two days indicate that there are a lot of overlap 
 
-### July 28, 2022 (Day 26)
+### July 28-29, 2022 (Day 26 - 27)
 * Dr. Bowman suggested reading/skimming this journal [Accurate Molecular-Orbital-Based Machine Learning Energies via Unsupervised Clustering of Chemical Space](https://pubs.acs.org/doi/10.1021/acs.jctc.2c00396).
     - The group uses Gaussian mixture model (GMM) for determining clusters automatically, without the need for user-specified paramters and training of an additional classifier. 
 * Did more reading on GMM.
 
 * Resources: 
-    * [sklearn.mixture.GaussianMixture](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
-    * [2.1. Gaussian mixture models](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
-    * [Gaussian Mixture Model](https://www.geeksforgeeks.org/gaussian-mixture-model/)
-    * [Gaussian Mixture Models Explained](https://towardsdatascience.com/gaussian-mixture-models-explained-6986aaf5a95)
+    - [sklearn.mixture.GaussianMixture](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
+    - [2.1. Gaussian mixture models](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
+    - [Gaussian Mixture Models Explained](https://towardsdatascience.com/gaussian-mixture-models-explained-6986aaf5a95)
+    - [In Depth: Gaussian Mixture Models](https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html)
+    - [In cluster analysis, how does Gaussian mixture model differ from K Means when we know the clusters are spherical?](https://stats.stackexchange.com/questions/489459/in-cluster-analysis-how-does-gaussian-mixture-model-differ-from-k-means-when-we#:~:text=only%20real%20difference%20between%20the,while%20GMM%20makes%20soft%20partitions.)
 
 #### Notes:
 * A Gaussian mixture model is a probabilistic model that assumes all the data points are generated from a mixture of a finite number of Gaussian distributions with unknown parameters. 
+    - In particular, the non-probabilistic nature of k-means and its use of simple distance-from-cluster-center to assign cluster membership leads to poor performance for many real-world situations.
     - One can think of mixture models as generalizing k-means clustering to incorporate information about the covariance structure of the data as well as the centers of the latent Gaussians.
+* Two disadvantages of k-means—its lack of flexibility in cluster shape and lack of probabilistic cluster assignment—mean that for many datasets (especially low-dimensional datasets) it may not perform as well as you might hope.
+    - One way to think about the k-means model is that it places a circle (or, in higher dimensions, a hyper-sphere) at the center of each cluster, with a radius defined by the most distant point in the cluster. This radius acts as a hard cutoff for cluster assignment within the training set: any point outside this circle is not considered a member of the cluster. 
+    - An important observation for k-means is that these cluster models must be circular: k-means has no built-in way of accounting for oblong or elliptical clusters.
+* In the simplest case, GMMs can be used for finding clusters in the same manner as k-means. 
+* Under the hood, a Gaussian mixture model is very similar to k-means: it uses an expectation–maximization approach which qualitatively does the following:
+    - Choose starting guesses for the location and shape
+    - Repeat until converged:
+        1. E-step: for each point, find weights encoding the probability of membership in each cluster
+        2. M-step: for each cluster, update its location, normalization, and shape based on all data points, making use of the weights
+    - The result of this is that each cluster is associated not with a hard-edged sphere, but with a smooth Gaussian model. 
+* The result of a GMM fit to some data is technically not a clustering model, but a generative probabilistic model describing the distribution of the data.
+* In cluster analysis, how does Gaussian mixture model differ from K Means when we know the clusters are spherical?
+    - A model is a set of probability distributions, usually chosen because you think the data came from a distribution like one in the set. Models typically have parameters that specify which model you mean from the set.
+    - An algorithm is a recipe for computing something from the data, usually something you hope will be useful.
+    - The Gaussian mixture model is a model. It is an assumption or approximation to how the data (and future data, often) were generated. Data from a Gaussian mixture model tend to fall into elliptical (or spherical) clumps
+    - k-means is an algorithm. Given a data set, it divides it into k clusters in a way that attempts to minimise the average Euclidean distance from a point to the centre of its clusters.
+    - For a concrete difference, consider that the only thing you get from k-means is a partition. The output from fitting a GMM can include much more than that. For example, you can compute the probability a given point came from each of the different fitted components.
+    
 
-
-* One important characteristic of K-means is that it is a hard clustering method, which means that it will associate each point to one and only one cluster.
-    - A limitation to this approach is that there is no uncertainty measure or probability that tells us how much a data point is associated with a specific cluster.
-* A Gaussian Mixture is a function that is comprised of several Gaussians, each identified by k ∈ {1,…, K}, where K is the number of clusters of our dataset. Each Gaussian k in the mixture is comprised of the following parameters:
-    - A mean μ that defines its centre.
-    - A covariance Σ that defines its width. This would be equivalent to the dimensions of an ellipsoid in a multivariate scenario.
-    - A mixing probability π that defines how big or small the Gaussian function will be.
-
-### July 29, 2022 (Day xx)
-* 
