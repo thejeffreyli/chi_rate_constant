@@ -263,3 +263,41 @@ Updates:
 * Presented [PowerPoint](../logs/files/Week%2006%20Report.pdf) for Week 6 results.
 
 ### July 25, 2022 (Day 24)
+* Examined the clusters. Wanted to answer two questions for each of the scatter-clusters. 
+    1. How many data instances are in each clusters? 
+    2. What chi values are in each cluster?
+* The first question will determine whether there is an imbalance of instances in each cluster. Ideally, we want each cluster to be approximately the same size. The second question will let us know whether we can create separate labels from each cluster. In other words, if a cluster only has a certain chi value range which only appears in that cluster, them it can be associated with a label.
+* No clear labels can be extracted from any fo the scatter-cluster plots.
+* Decided to try using k = 2, since we originally had two labels. No clear labels on this one, either. 
+* One idea: KM03 (k = 2) has about roughly about the same number of instances for both clusters. Cluster 0 appears to occupy a smaller range compared to Cluster 1. If we can exclude that range of chi values from Cluster 1, then we can potentially create labels for the data. Granted, by doing this: (1) there will be less data in the overall dataset and (2) the model accuracy might suffer a little bit.
+
+### July 26, 2022 (Day 25)
+* Decided to add feature 'diff' (= abs difference between alph1 and alph2) and drop features 'alph1' and 'alph2.' I thought it would be a good attempt, since we will have exactly three features for scatter/clustering.
+* Same as before, no clear labels can be generated from the clusters. 
+* The results from the past two days indicate that there are a lot of overlap 
+
+### July 28, 2022 (Day 26)
+* Dr. Bowman suggested reading/skimming this journal [Accurate Molecular-Orbital-Based Machine Learning Energies via Unsupervised Clustering of Chemical Space](https://pubs.acs.org/doi/10.1021/acs.jctc.2c00396).
+    - The group uses Gaussian mixture model (GMM) for determining clusters automatically, without the need for user-specified paramters and training of an additional classifier. 
+* Did more reading on GMM.
+
+* Resources: 
+    * [sklearn.mixture.GaussianMixture](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
+    * [2.1. Gaussian mixture models](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
+    * [Gaussian Mixture Model](https://www.geeksforgeeks.org/gaussian-mixture-model/)
+    * [Gaussian Mixture Models Explained](https://towardsdatascience.com/gaussian-mixture-models-explained-6986aaf5a95)
+
+#### Notes:
+* A Gaussian mixture model is a probabilistic model that assumes all the data points are generated from a mixture of a finite number of Gaussian distributions with unknown parameters. 
+    - One can think of mixture models as generalizing k-means clustering to incorporate information about the covariance structure of the data as well as the centers of the latent Gaussians.
+
+
+* One important characteristic of K-means is that it is a hard clustering method, which means that it will associate each point to one and only one cluster.
+    - A limitation to this approach is that there is no uncertainty measure or probability that tells us how much a data point is associated with a specific cluster.
+* A Gaussian Mixture is a function that is comprised of several Gaussians, each identified by k ∈ {1,…, K}, where K is the number of clusters of our dataset. Each Gaussian k in the mixture is comprised of the following parameters:
+    - A mean μ that defines its centre.
+    - A covariance Σ that defines its width. This would be equivalent to the dimensions of an ellipsoid in a multivariate scenario.
+    - A mixing probability π that defines how big or small the Gaussian function will be.
+
+### July 29, 2022 (Day xx)
+* 
