@@ -259,6 +259,8 @@ Updates:
     - [Understanding K-means Clustering in Machine Learning(With Examples)](https://www.analyticsvidhya.com/blog/2021/11/understanding-k-means-clustering-in-machine-learningwith-examples/)
     - [How Does k-Means Clustering in Machine Learning Work?](https://towardsdatascience.com/how-does-k-means-clustering-in-machine-learning-work-fdaaaf5acfa0)
 
+## Week 7: Cluster Analysis
+
 ### July 24, 2022 (Day 23)
 * Presented [PowerPoint](../logs/files/Week%2006%20Report.pdf) for Week 6 results.
 
