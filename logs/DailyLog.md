@@ -281,13 +281,6 @@ Updates:
     - The group uses Gaussian mixture model (GMM) for determining clusters automatically, without the need for user-specified paramters and training of an additional classifier. 
 * Did more reading on GMM.
 
-* Resources: 
-    - [sklearn.mixture.GaussianMixture](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
-    - [2.1. Gaussian mixture models](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
-    - [Gaussian Mixture Models Explained](https://towardsdatascience.com/gaussian-mixture-models-explained-6986aaf5a95)
-    - [In Depth: Gaussian Mixture Models](https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html)
-    - [In cluster analysis, how does Gaussian mixture model differ from K Means when we know the clusters are spherical?](https://stats.stackexchange.com/questions/489459/in-cluster-analysis-how-does-gaussian-mixture-model-differ-from-k-means-when-we#:~:text=only%20real%20difference%20between%20the,while%20GMM%20makes%20soft%20partitions.)
-
 #### Notes:
 * A Gaussian mixture model is a probabilistic model that assumes all the data points are generated from a mixture of a finite number of Gaussian distributions with unknown parameters. 
     - In particular, the non-probabilistic nature of k-means and its use of simple distance-from-cluster-center to assign cluster membership leads to poor performance for many real-world situations.
@@ -310,5 +303,11 @@ Updates:
     - k-means is an algorithm. Given a data set, it divides it into k clusters in a way that attempts to minimise the average Euclidean distance from a point to the centre of its clusters.
     - For a concrete difference, consider that the only thing you get from k-means is a partition. The output from fitting a GMM can include much more than that. For example, you can compute the probability a given point came from each of the different fitted components.
     
+* Resources: 
+    - [sklearn.mixture.GaussianMixture](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
+    - [2.1. Gaussian mixture models](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)
+    - [Gaussian Mixture Models Explained](https://towardsdatascience.com/gaussian-mixture-models-explained-6986aaf5a95)
+    - [In Depth: Gaussian Mixture Models](https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html)
+    - [In cluster analysis, how does Gaussian mixture model differ from K Means when we know the clusters are spherical?](https://stats.stackexchange.com/questions/489459/in-cluster-analysis-how-does-gaussian-mixture-model-differ-from-k-means-when-we#:~:text=only%20real%20difference%20between%20the,while%20GMM%20makes%20soft%20partitions.)
 
 ### July 30, 2022 (Day 28)
